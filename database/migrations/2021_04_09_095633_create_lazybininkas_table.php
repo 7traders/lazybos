@@ -19,6 +19,8 @@ class CreateLazybininkasTable extends Migration
             $table->string('name', 64);
             $table->string('surname', 64);
             $table->integer('bet');
+            $table->unsignedBigInteger('arklys_id');
+            $table->foreign('arklys_id')->references('id')->on('arklys');
 
             $table->timestamps();
         });

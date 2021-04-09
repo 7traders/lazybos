@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Arklys;
 use Illuminate\Http\Request;
+use App\Models\Lazybininkas;
 
 class ArklysController extends Controller
 {
@@ -14,7 +15,9 @@ class ArklysController extends Controller
      */
     public function index()
     {
-        //
+        $arkliai = Arklys::all();
+        return view('arklys.index', ['arkliai' => $arkliai]);
+
     }
 
     /**
@@ -24,7 +27,8 @@ class ArklysController extends Controller
      */
     public function create()
     {
-        //
+        return view('arklys.create');
+ 
     }
 
     /**
@@ -35,7 +39,14 @@ class ArklysController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $arklys = new Arklys;
+        $arklys->name = $request->arklys_name;
+        $arklys->runs = $request->arklys_runs;
+        $arklys->wins = $request->arklys_wins;
+        $arklys->about = $request->arklys_about;
+        $arklys->save();
+        return redirect()->route('arklys.index');
+
     }
 
     /**
@@ -57,7 +68,7 @@ class ArklysController extends Controller
      */
     public function edit(Arklys $arklys)
     {
-        //
+        return view('arklys.edit', ['arklys' => $arklys]);
     }
 
     /**
@@ -69,7 +80,13 @@ class ArklysController extends Controller
      */
     public function update(Request $request, Arklys $arklys)
     {
-        //
+        $arklys->name = $request->arklys_name;
+        $arklys->runs = $request->arklys_runs;
+        $arklys->wins = $request->arklys_wins;
+        $arklys->about = $request->arklys_about;
+        $arklys->save();
+        return redirect()->route('arklys.index');
+ 
     }
 
     /**
@@ -80,6 +97,8 @@ class ArklysController extends Controller
      */
     public function destroy(Arklys $arklys)
     {
-        //
+        $arklys->delete();
+        return redirect()->route('arklys.index');
+ 
     }
 }

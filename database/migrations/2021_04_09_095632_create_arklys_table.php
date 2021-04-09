@@ -20,9 +20,7 @@ class CreateArklysTable extends Migration
             $table->integer('wins');
             $table->integer('runs');
             $table->text('about');
-            $table->unsignedBigInteger('arklys_id');
-            $table->foreign('lazybininkas_id')->references('id')->on('lazybininkas');
-
+          
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LazybininkasController;
+use App\Http\Controllers\ArklysController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +38,13 @@ Route::group(['prefix' => 'lazybininkai'], function(){
     Route::get('show/{lazybininkas}', [LazybininkasController::class, 'show'])->name('lazybininkas.show');
  });
  
- 
+ Route::group(['prefix' => 'arkliai'], function(){
+    Route::get('', [ArklysController::class, 'index'])->name('arklys.index');
+    Route::get('create', [ArklysController::class, 'create'])->name('arklys.create');
+    Route::post('store', [ArklysController::class, 'store'])->name('arklys.store');
+    Route::get('edit/{arklys}', [ArklysController::class, 'edit'])->name('arklys.edit');
+    Route::post('update/{arklys}', [ArklysController::class, 'update'])->name('arklys.update');
+    Route::post('delete/{arklys}', [ArklysController::class, 'destroy'])->name('arklys.destroy');
+    Route::get('show/{arklys}', [ArklysController::class, 'show'])->name('arklys.show');
+ });
+  
