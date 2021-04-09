@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Lazybininkas extends Model
 {
     use HasFactory;
+
+    public function lazybininkasArklys()
+    {
+        return $this->belongsTo('App\Models\Arklys', 'arklys_id', 'id');
+    }
+ 
 }

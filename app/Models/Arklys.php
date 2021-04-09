@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Arklys extends Model
 {
     use HasFactory;
+
+    public function arklysLazybininkai()
+    {
+        return $this->hasMany('App\Models\Lazybininkas', 'arklys_id', 'id');
+    }
+ 
 }

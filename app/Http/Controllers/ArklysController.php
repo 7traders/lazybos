@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Arklys;
 use Illuminate\Http\Request;
-use App\Models\Lazybininkas;
 
 class ArklysController extends Controller
 {
@@ -97,8 +96,15 @@ class ArklysController extends Controller
      */
     public function destroy(Arklys $arklys)
     {
+        // $arklys->delete();
+        // return redirect()->route('arklys.index');    //NEAISKU AR APATINIS TEISINGAS
+ 
+        if($arklys->arklysLazybininkai->count()){
+            return 'Can not delete, because horse was beted on!';
+        }
         $arklys->delete();
         return redirect()->route('arklys.index');
  
+
     }
 }

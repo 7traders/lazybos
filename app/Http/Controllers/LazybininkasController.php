@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lazybininkas;
 use Illuminate\Http\Request;
+use App\Models\Arklys;
 
 class LazybininkasController extends Controller
 {
@@ -16,7 +17,7 @@ class LazybininkasController extends Controller
     {
         $lazybininkai = Lazybininkas::all();
         return view('lazybininkas.index', ['lazybininkai' => $lazybininkai]);
-
+ 
     }
 
     /**
@@ -26,7 +27,9 @@ class LazybininkasController extends Controller
      */
     public function create()
     {
-        return view('lazybininkas.create');
+        $arkliai = Arklys::all();
+        return view('lazybininkas.create', ['arkliai' => $arkliai]);
+  
     }
 
     /**
@@ -41,6 +44,7 @@ class LazybininkasController extends Controller
         $lazybininkas->name = $request->lazybininkas_name;
         $lazybininkas->surname = $request->lazybininkas_surname;
         $lazybininkas->bet = $request->lazybininkas_bet;
+        $lazybininkas->arklys_id = $request->arklys_id;
         $lazybininkas->save();
         return redirect()->route('lazybininkas.index');
 
@@ -65,7 +69,9 @@ class LazybininkasController extends Controller
      */
     public function edit(Lazybininkas $lazybininkas)
     {
-        return view('lazybininkas.edit', ['lazybininkas' => $lazybininkas]);
+        $arkliai = Arklys::all();
+        return view('lazybininkas.edit', ['lazybininkas' => $lazybininkas, 'arkliai' => $arkliai]);
+
     }
 
     /**
@@ -80,6 +86,7 @@ class LazybininkasController extends Controller
         $lazybininkas->name = $request->lazybininkas_name;
         $lazybininkas->surname = $request->lazybininkas_surname;
         $lazybininkas->bet = $request->lazybininkas_bet;
+        $lazybininkas->arklys_id = $request->arklys_id;
         $lazybininkas->save();
         return redirect()->route('lazybininkas.index');
  
@@ -95,6 +102,6 @@ class LazybininkasController extends Controller
     {
         $lazybininkas->delete();
         return redirect()->route('lazybininkas.index');
-
+ 
     }
 }
