@@ -46,7 +46,7 @@ class LazybininkasController extends Controller
         $lazybininkas->bet = $request->lazybininkas_bet;
         $lazybininkas->arklys_id = $request->arklys_id;
         $lazybininkas->save();
-        return redirect()->route('lazybininkas.index');
+        return redirect()->route('lazybininkas.index')->with('success_message', 'Added');
 
     }
 
@@ -88,7 +88,7 @@ class LazybininkasController extends Controller
         $lazybininkas->bet = $request->lazybininkas_bet;
         $lazybininkas->arklys_id = $request->arklys_id;
         $lazybininkas->save();
-        return redirect()->route('lazybininkas.index');
+        return redirect()->route('lazybininkas.index')->with('success_message', 'Updated');
  
     }
 
@@ -101,7 +101,7 @@ class LazybininkasController extends Controller
     public function destroy(Lazybininkas $lazybininkas)
     {
         $lazybininkas->delete();
-        return redirect()->route('lazybininkas.index');
- 
+        return redirect()->route('lazybininkas.index')->with('success_message', 'Deleted');
+
     }
 }

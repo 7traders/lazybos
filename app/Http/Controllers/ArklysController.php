@@ -44,7 +44,7 @@ class ArklysController extends Controller
         $arklys->wins = $request->arklys_wins;
         $arklys->about = $request->arklys_about;
         $arklys->save();
-        return redirect()->route('arklys.index');
+        return redirect()->route('arklys.index')->with('success_message', 'Added');
 
     }
 
@@ -84,8 +84,7 @@ class ArklysController extends Controller
         $arklys->wins = $request->arklys_wins;
         $arklys->about = $request->arklys_about;
         $arklys->save();
-        return redirect()->route('arklys.index');
- 
+        return redirect()->route('arklys.index')->with('success_message', 'Updated');
     }
 
     /**
@@ -100,11 +99,10 @@ class ArklysController extends Controller
         // return redirect()->route('arklys.index');    //NEAISKU AR APATINIS TEISINGAS
  
         if($arklys->arklysLazybininkai->count()){
-            return 'Can not delete, because horse was beted on!';
+            return redirect()->route('arklys.index')->with('info_message', 'Can not delete, because horse was beted on!');
         }
         $arklys->delete();
-        return redirect()->route('arklys.index');
- 
+        return redirect()->route('arklys.index')->with('success_message', 'Deleted');
 
     }
 }
