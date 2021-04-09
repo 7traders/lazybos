@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LazybininkasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+
+
+Route::group(['prefix' => 'lazybininkai'], function(){
+    Route::get('', [LazybininkasController::class, 'index'])->name('lazybininkas.index');
+    Route::get('create', [LazybininkasController::class, 'create'])->name('lazybininkas.create');
+    Route::post('store', [LazybininkasController::class, 'store'])->name('lazybininkas.store');
+    Route::get('edit/{lazybininkas}', [LazybininkasController::class, 'edit'])->name('lazybininkas.edit');
+    Route::post('update/{lazybininkas}', [LazybininkasController::class, 'update'])->name('lazybininkas.update');
+    Route::post('delete/{lazybininkas}', [LazybininkasController::class, 'destroy'])->name('lazybininkas.destroy');
+    Route::get('show/{lazybininkas}', [LazybininkasController::class, 'show'])->name('lazybininkas.show');
+ });
+ 
+ 

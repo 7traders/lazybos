@@ -14,7 +14,9 @@ class LazybininkasController extends Controller
      */
     public function index()
     {
-        //
+        $lazybininkai = Lazybininkas::all();
+        return view('lazybininkas.index', ['lazybininkai' => $lazybininkai]);
+
     }
 
     /**
@@ -24,7 +26,7 @@ class LazybininkasController extends Controller
      */
     public function create()
     {
-        //
+        return view('lazybininkas.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class LazybininkasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lazybininkas = new Lazybininkas;
+        $lazybininkas->name = $request->lazybininkas_name;
+        $lazybininkas->surname = $request->lazybininkas_surname;
+        $lazybininkas->bet = $request->lazybininkas_bet;
+        $lazybininkas->save();
+        return redirect()->route('lazybininkas.index');
+
     }
 
     /**
@@ -57,7 +65,7 @@ class LazybininkasController extends Controller
      */
     public function edit(Lazybininkas $lazybininkas)
     {
-        //
+        return view('lazybininkas.edit', ['lazybininkas' => $lazybininkas]);
     }
 
     /**
@@ -69,7 +77,12 @@ class LazybininkasController extends Controller
      */
     public function update(Request $request, Lazybininkas $lazybininkas)
     {
-        //
+        $lazybininkas->name = $request->lazybininkas_name;
+        $lazybininkas->surname = $request->lazybininkas_surname;
+        $lazybininkas->bet = $request->lazybininkas_bet;
+        $lazybininkas->save();
+        return redirect()->route('lazybininkas.index');
+ 
     }
 
     /**
@@ -80,6 +93,8 @@ class LazybininkasController extends Controller
      */
     public function destroy(Lazybininkas $lazybininkas)
     {
-        //
+        $lazybininkas->delete();
+        return redirect()->route('lazybininkas.index');
+
     }
 }

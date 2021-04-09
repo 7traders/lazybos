@@ -15,6 +15,14 @@ class CreateArklysTable extends Migration
     {
         Schema::create('arklys', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name', 64);
+            $table->integer('wins');
+            $table->integer('runs');
+            $table->text('about');
+            $table->unsignedBigInteger('arklys_id');
+            $table->foreign('lazybininkas_id')->references('id')->on('lazybininkas');
+
             $table->timestamps();
         });
     }
